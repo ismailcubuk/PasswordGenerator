@@ -7,13 +7,16 @@ function App() {
   const [password, setPassword] = useState("")
   const [characterLength, setCharacterLength] = useState("5")
 
-  const [LowerText, setLowerText] = useState("")
-  const [UpperText, setUpperText] = useState("")
-  const [NumericText, setNumericText] = useState("")
 
   const [activeUpper, setActiveUpper] = useState(false)
   const [activeLower, setActiveLower] = useState(false)
   const [activeNumeric, setActiveNumeric] = useState(false)
+  const [activeSymbols, setActiveSymbols] = useState(false)
+
+  const [pwUpper, setPwUpper] = useState("")
+  const [pwLower, setPwLower] = useState("")
+  const [pwNumeric, setPwNumeric] = useState("")
+  const [pwSymbols, setPwSymbols] = useState("")
   // validate+
   const Upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const Lower = "abcdefghijklmnopqrstuvwxyz";
@@ -22,48 +25,47 @@ function App() {
   // validate-
 
   // UPPER
+
   const UpperClick = (e) => {
     setActiveUpper(e.target.value)
     setActiveUpper(!activeUpper)
   }
-  useEffect(() => {
-    if (activeUpper === true) {
-      setUpperText(Upper)
-    } else {
-      setUpperText()
-    }
-  }, [activeUpper])
   // LOWER
-  const LowerClick = (e) => {
-    setActiveLower(e.target.value)
+  const LowerClick = () => {
     setActiveLower(!activeLower)
   }
-  useEffect(() => {
-    if (activeLower === true) {
-      setLowerText(Lower)
-    } else {
-      setLowerText()
-    }
-  }, [activeLower])
   // numeric
-  const NumberClick = (e) => {
-    setActiveNumeric(e.target.value)
+  const NumberClick = () => {
     setActiveNumeric(!activeNumeric)
   }
-  useEffect(() => {
-    if (activeNumeric === true) {
-      return setNumericText(Numbers)
-    } else {
-      return setNumericText()
-    }
-  }, [activeNumeric])
+  // symbol
   const SymbolsClick = () => {
+    setActiveSymbols(!activeSymbols)
   }
-  const sifre = UpperText + LowerText + NumericText
-  console.log(sifre);
-
 
   const handleClick = () => {
+    const sifre = pwUpper + pwLower + pwNumeric + pwSymbols
+
+    if (activeUpper === true) {
+      setPwUpper(Upper)
+    } else {
+      setPwUpper("")
+    }
+    if (activeLower === true) {
+      setPwLower(Lower)
+    } else {
+      setPwLower("")
+    }
+    if (activeNumeric === true) {
+      setPwNumeric(Numbers)
+    } else {
+      setPwNumeric("")
+    }
+    if (activeSymbols === true) {
+      setPwSymbols(Symbols)
+    } else {
+      setPwSymbols("")
+    }
     let letters = []
     for (let i = 0; i < characterLength; i++) {
       const randomIndex = Math.floor(Math.random() * sifre.length);
