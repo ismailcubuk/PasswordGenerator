@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faCopy } from '@fortawesome/free-regular-svg-icons'
 
 function App() {
   return (
@@ -6,7 +9,7 @@ function App() {
         <h3 className="header">Password Generator</h3>
         <div className="generate-password">
           <h2>assdadasd15625</h2>
-          <h2>CPY</h2>
+          <FontAwesomeIcon icon={faCopy} className='copy-icon' />
         </div>
         <div className="generate-area">
           <div className="character-length">
@@ -47,10 +50,8 @@ function App() {
             </div>
           </div>
           <div className="generate">
-            <h2>
-              GENERATE
-              <i class='fas fa-arrow-right' style='font-size:36px' />
-            </h2>
+            GENERATE
+            <FontAwesomeIcon icon={faArrowRight} className='icon' />
           </div>
         </div>
 
