@@ -4,9 +4,8 @@ import { faCopy } from '@fortawesome/free-regular-svg-icons'
 import { useState, useEffect } from 'react';
 
 function App() {
-  const [password, setPassword] = useState("")
+  const [password, setPassword] = useState("PASSWORD")
   const [characterLength, setCharacterLength] = useState("5")
-
 
   const [activeUpper, setActiveUpper] = useState(false)
   const [activeLower, setActiveLower] = useState(false)
@@ -23,6 +22,48 @@ function App() {
   const Numbers = "1234567890";
   const Symbols = ".!#+%?";
   // validate-
+  const [strength, setStrength] = useState([])
+
+  useEffect(() => {
+
+    if (activeUpper) {
+      setStrength(+2)
+    } else {
+      setStrength(+0)
+    }
+    if (activeLower) {
+      setStrength(+2)
+    } else {
+      setStrength(+0)
+    }
+    if (activeNumeric) {
+      setStrength(+2)
+    } else {
+      setStrength(+0)
+    }
+    if (activeSymbols) {
+      setStrength(+2)
+    } else {
+      setStrength(+0)
+    }
+    if (characterLength > 2) {
+      setStrength(+1)
+    } if (characterLength > 4) {
+      setStrength(+2)
+    } if (characterLength > 6) {
+      setStrength(+3)
+    } if (characterLength > 8) {
+      setStrength(+4)
+    } if (characterLength === 10) {
+      setStrength(+5)
+    }
+    console.log("içeride " + strength);
+
+  }, [strength, characterLength, activeSymbols, activeNumeric, activeLower, activeUpper])
+
+  console.log("dışarıda " + strength);
+
+
 
   // UPPER +
   const UpperClick = () => {
@@ -30,7 +71,7 @@ function App() {
   }
   useEffect(() => {
     return activeUpper ? setPwUpper(Upper) : setPwUpper("")
-  }, [UpperClick])
+  }, [activeUpper])
   // UPPER -
 
   // LOWER +
@@ -39,7 +80,7 @@ function App() {
   }
   useEffect(() => {
     return activeLower ? setPwLower(Lower) : setPwLower("")
-  }, [UpperClick])
+  }, [activeLower])
   // LOWER -
 
   // NUMERİC +
@@ -48,7 +89,7 @@ function App() {
   }
   useEffect(() => {
     return activeNumeric ? setPwNumeric(Numbers) : setPwNumeric("")
-  }, [NumberClick])
+  }, [activeNumeric])
   // NUMERİC -
 
   // SYMBOLS +
@@ -56,17 +97,12 @@ function App() {
     setActiveSymbols(!activeSymbols)
   }
   useEffect(() => {
-    return activeNumeric ? setPwNumeric(Numbers) : setPwNumeric("")
-  }, [NumberClick])
+    return activeSymbols ? setPwSymbols(Symbols) : setPwSymbols("")
+  }, [activeSymbols])
   // SYMBOLS -
 
   const handleClick = () => {
     const sifre = pwUpper + pwLower + pwNumeric + pwSymbols
-    // if (activeSymbols === true) {
-    //   setPwSymbols(Symbols)
-    // } else {
-    //   setPwSymbols("")
-    // }
     let letters = []
     for (let i = 0; i < characterLength; i++) {
       const randomIndex = Math.floor(Math.random() * sifre.length);
@@ -105,7 +141,7 @@ function App() {
               <input
                 type="checkbox"
                 className="checkbox"
-                onChange={() => UpperClick()}
+                onChange={UpperClick}
                 value={activeUpper}
               />
               <h3>Include Uppercase Letters</h3>
@@ -116,7 +152,7 @@ function App() {
               <input
                 type="checkbox"
                 className="checkbox"
-                onChange={() => LowerClick()}
+                onChange={LowerClick}
                 value={activeLower}
               />
               <h3>Include Lowercase Letters</h3>
@@ -141,7 +177,7 @@ function App() {
           </div>
           {/* STRENGTH */}
           <div className="strength">
-            <h3>STRENTH</h3>
+            <h3>STRENGTH</h3>
             <div>
               <h2>MEDIUM</h2>
               <div className="levels">
