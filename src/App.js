@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight, faL } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faCopy } from '@fortawesome/free-regular-svg-icons'
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
   const [password, setPassword] = useState("")
@@ -24,48 +24,49 @@ function App() {
   const Symbols = ".!#+%?";
   // validate-
 
-  // UPPER
-
-  const UpperClick = (e) => {
-    setActiveUpper(e.target.value)
+  // UPPER +
+  const UpperClick = () => {
     setActiveUpper(!activeUpper)
   }
-  // LOWER
+  useEffect(() => {
+    return activeUpper ? setPwUpper(Upper) : setPwUpper("")
+  }, [UpperClick])
+  // UPPER -
+
+  // LOWER +
   const LowerClick = () => {
     setActiveLower(!activeLower)
   }
-  // numeric
+  useEffect(() => {
+    return activeLower ? setPwLower(Lower) : setPwLower("")
+  }, [UpperClick])
+  // LOWER -
+
+  // NUMERİC +
   const NumberClick = () => {
     setActiveNumeric(!activeNumeric)
   }
-  // symbol
+  useEffect(() => {
+    return activeNumeric ? setPwNumeric(Numbers) : setPwNumeric("")
+  }, [NumberClick])
+  // NUMERİC -
+
+  // SYMBOLS +
   const SymbolsClick = () => {
     setActiveSymbols(!activeSymbols)
   }
+  useEffect(() => {
+    return activeNumeric ? setPwNumeric(Numbers) : setPwNumeric("")
+  }, [NumberClick])
+  // SYMBOLS -
 
   const handleClick = () => {
     const sifre = pwUpper + pwLower + pwNumeric + pwSymbols
-
-    if (activeUpper === true) {
-      setPwUpper(Upper)
-    } else {
-      setPwUpper("")
-    }
-    if (activeLower === true) {
-      setPwLower(Lower)
-    } else {
-      setPwLower("")
-    }
-    if (activeNumeric === true) {
-      setPwNumeric(Numbers)
-    } else {
-      setPwNumeric("")
-    }
-    if (activeSymbols === true) {
-      setPwSymbols(Symbols)
-    } else {
-      setPwSymbols("")
-    }
+    // if (activeSymbols === true) {
+    //   setPwSymbols(Symbols)
+    // } else {
+    //   setPwSymbols("")
+    // }
     let letters = []
     for (let i = 0; i < characterLength; i++) {
       const randomIndex = Math.floor(Math.random() * sifre.length);
@@ -104,7 +105,7 @@ function App() {
               <input
                 type="checkbox"
                 className="checkbox"
-                onChange={(e) => UpperClick(e)}
+                onChange={() => UpperClick()}
                 value={activeUpper}
               />
               <h3>Include Uppercase Letters</h3>
@@ -115,7 +116,7 @@ function App() {
               <input
                 type="checkbox"
                 className="checkbox"
-                onChange={(e) => LowerClick(e)}
+                onChange={() => LowerClick()}
                 value={activeLower}
               />
               <h3>Include Lowercase Letters</h3>
