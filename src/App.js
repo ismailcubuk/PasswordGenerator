@@ -84,7 +84,7 @@ function App() {
   let sumCalculate = sum * characterLength
 
   // console.log("sum 1 " + sum);
-
+  const [difficulty, setDifficulty] = useState("")
   // EASY
   const [easyActive, setEasyActive] = useState(false)
   const easy = {
@@ -95,10 +95,12 @@ function App() {
     if (sumCalculate > 0 && sumCalculate <= 20) {
       console.log("sumCalculate EASY " + sumCalculate);
       setEasyActive(true)
+      setDifficulty("Easy")
     }
 
     return () => {
       setEasyActive(false)
+      setDifficulty("")
     }
   }, [sumCalculate])
 
@@ -113,11 +115,13 @@ function App() {
       console.log("sumCalculate medium " + sumCalculate);
       setEasyActive(true)
       setMediumActive(true)
+      setDifficulty("Medium")
     }
 
     return () => {
       setEasyActive(false)
       setMediumActive(false)
+      setDifficulty("")
     }
   }, [sumCalculate])
   // HARD
@@ -132,12 +136,14 @@ function App() {
       setEasyActive(true)
       setMediumActive(true)
       setHardActive(true)
+      setDifficulty("Hard")
     }
 
     return () => {
       setEasyActive(false)
       setMediumActive(false)
       setHardActive(false)
+      setDifficulty("")
     }
   }, [sumCalculate])
   // EXPERT
@@ -153,6 +159,7 @@ function App() {
       setMediumActive(true)
       setHardActive(true)
       setExpertActive(true)
+      setDifficulty("Expert")
     }
 
     return () => {
@@ -160,6 +167,7 @@ function App() {
       setMediumActive(false)
       setHardActive(false)
       setExpertActive(false)
+      setDifficulty("")
     }
   }, [sumCalculate])
 
@@ -222,18 +230,32 @@ function App() {
       letters.push(sifre[randomIndex])
     }
     setPassword(letters);
+
   }
 
   const handleChange = (e) => {
     setCharacterLength(e.target.value)
   }
+
+  // DÜZELT BURAYI
+  let newPass = []
+  newPass.push(password.reduce((a, b) => a + b + '').trim())
+  const copyClick = () => {
+    navigator.clipboard.writeText(newPass).then(() => {
+    });
+    console.log("text copied");
+  };
+  // DÜZELT BURAYI
   return (
     <div className="background">
       <div className="border">
         <h3 className="header">Password Generator</h3>
         <div className="generate-password">
           <h2>{password}</h2>
-          <FontAwesomeIcon icon={faCopy} className='copy-icon' />
+          <FontAwesomeIcon icon={faCopy}
+            className='copy-icon'
+            onClick={copyClick}
+          />
         </div>
         <div className="generate-area">
           <div className="character-length">
@@ -292,7 +314,7 @@ function App() {
           <div className="strength">
             <h3>STRENGTH</h3>
             <div>
-              <h2>MEDIUM</h2>
+              <h2> {difficulty} </h2>
               <div className="levels">
                 <div className="level" style={easy}></div>
                 <div className="level" style={medium}></div>
@@ -302,7 +324,7 @@ function App() {
             </div>
           </div>
           {/* DİSABLED EKLE */}
-          <button className="generate" onClick={handleClick}>
+          <button className="generate" disabled={!activeUpper && !activeLower && !activeNumeric && !activeSymbols} onClick={handleClick}>
             GENERATE
             <FontAwesomeIcon icon={faArrowRight} className='icon' />
           </button>

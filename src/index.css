@@ -68,7 +68,7 @@ h1 {
 }
 
 .character-length>h1 {
-    color: #A9FDB2;
+    color: #36A474;
 }
 
 /* RANGE */
@@ -94,7 +94,7 @@ h1 {
 
 #range::-webkit-slider-thumb:hover {
     background-color: black;
-    border: 2px solid #A9FDB2;
+    border: 2px solid #36A474;
 }
 
 /* OPTİON */
@@ -116,7 +116,7 @@ h1 {
     width: 20px;
     height: 20px;
     cursor: pointer;
-    accent-color: #A9FDB2;
+    accent-color: #36A474;
 }
 
 /* SETRENGTH */
@@ -149,16 +149,18 @@ h1 {
 .level {
     border: 2px solid white;
     width: 10px;
-    height: 100%;
+    height: 27px;
 }
 
 /* GENERATE */
 .generate {
-    background-color: #A9FDB2;
+    /* background-color: #A9FDB2; */
+    /* background-color: greenyellow; */
+    background-color: #36A474;
     display: flex;
     justify-content: center;
     cursor: pointer;
-    border: 2px solid #A9FDB2;
+    border: 2px solid #36A474;
     padding: 16px;
     width: 100%;
     font-size: 20px;
@@ -174,6 +176,16 @@ h1 {
 }
 
 .generate:hover {
-    color: #A9FDB2;
+    color: #BBF7C1;
     background-color: #24232C;
+}
+
+.generate:disabled {
+    border: 2px solid #BBF7C1;
+    background-color: #BBF7C1;
+    color: #24232C;
+}
+
+.generate:disabled .icon {
+    color: #24232C;
 }
