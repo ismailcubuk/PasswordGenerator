@@ -85,21 +85,93 @@ function App() {
 
   // console.log("sum 1 " + sum);
 
+  // EASY
+  const [easyActive, setEasyActive] = useState(false)
+  const easy = {
+    border: easyActive ? "2px solid yellow" : "",
+    backgroundColor: easyActive ? "yellow" : ""
+  }
+  useEffect(() => {
+    if (sumCalculate > 0 && sumCalculate <= 20) {
+      console.log("sumCalculate EASY " + sumCalculate);
+      setEasyActive(true)
+    }
 
+    return () => {
+      setEasyActive(false)
+    }
+  }, [sumCalculate])
 
+  // MEDİUM
+  const [mediumActive, setMediumActive] = useState(false)
+  const medium = {
+    border: mediumActive ? "2px solid yellow" : "",
+    backgroundColor: mediumActive ? "yellow" : ""
+  }
+  useEffect(() => {
+    if (sumCalculate > 21 && sumCalculate <= 40) {
+      console.log("sumCalculate medium " + sumCalculate);
+      setEasyActive(true)
+      setMediumActive(true)
+    }
 
-  if (sumCalculate > 0 && sumCalculate <= 20) {
-    console.log("sumCalculate EASY " + sumCalculate);
+    return () => {
+      setEasyActive(false)
+      setMediumActive(false)
+    }
+  }, [sumCalculate])
+  // HARD
+  const [hardActive, setHardActive] = useState(false)
+  const hard = {
+    border: hardActive ? "2px solid yellow" : "",
+    backgroundColor: hardActive ? "yellow" : ""
   }
-  if (sumCalculate > 21 && sumCalculate <= 40) {
-    console.log("sumCalculate MEDİUM " + sumCalculate);
+  useEffect(() => {
+    if (sumCalculate > 41 && sumCalculate <= 60) {
+      console.log("sumCalculate hard " + sumCalculate);
+      setEasyActive(true)
+      setMediumActive(true)
+      setHardActive(true)
+    }
+
+    return () => {
+      setEasyActive(false)
+      setMediumActive(false)
+      setHardActive(false)
+    }
+  }, [sumCalculate])
+  // EXPERT
+  const [expertActive, setExpertActive] = useState(false)
+  const expert = {
+    border: expertActive ? "2px solid yellow" : "",
+    backgroundColor: expertActive ? "yellow" : ""
   }
-  if (sumCalculate > 41 && sumCalculate <= 60) {
-    console.log("sumCalculate HARD " + sumCalculate);
-  }
-  if (sumCalculate > 61 && sumCalculate <= 100) {
-    console.log("sumCalculate EXPERT " + sumCalculate);
-  }
+  useEffect(() => {
+    if (sumCalculate > 61 && sumCalculate <= 100) {
+      console.log("sumCalculate expert " + sumCalculate);
+      setEasyActive(true)
+      setMediumActive(true)
+      setHardActive(true)
+      setExpertActive(true)
+    }
+
+    return () => {
+      setEasyActive(false)
+      setMediumActive(false)
+      setHardActive(false)
+      setExpertActive(false)
+    }
+  }, [sumCalculate])
+
+  // if (sumCalculate > 21 && sumCalculate <= 40) {
+  //   console.log("sumCalculate MEDİUM " + sumCalculate);
+  // }
+  // if (sumCalculate > 41 && sumCalculate <= 60) {
+  //   console.log("sumCalculate HARD " + sumCalculate);
+  // }
+  // if (sumCalculate > 61 && sumCalculate <= 100) {
+  //   console.log("sumCalculate EXPERT " + sumCalculate);
+  // }
 
   // console.log("dışarıda " + strength);
 
@@ -222,10 +294,10 @@ function App() {
             <div>
               <h2>MEDIUM</h2>
               <div className="levels">
-                <div className="level"></div>
-                <div className="level"></div>
-                <div className="level"></div>
-                <div className="level"></div>
+                <div className="level" style={easy}></div>
+                <div className="level" style={medium}></div>
+                <div className="level" style={hard}></div>
+                <div className="level" style={expert}></div>
               </div>
             </div>
           </div>
