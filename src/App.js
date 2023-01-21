@@ -4,7 +4,7 @@ import { faCopy } from '@fortawesome/free-regular-svg-icons'
 import { useState, useEffect } from 'react';
 
 function App() {
-  const [password, setPassword] = useState("PASSWORD")
+  const [password, setPassword] = useState("")
   const [characterLength, setCharacterLength] = useState("5")
 
   const [activeUpper, setActiveUpper] = useState(false)
@@ -22,48 +22,89 @@ function App() {
   const Numbers = "1234567890";
   const Symbols = ".!#+%?";
   // validate-
-  const [strength, setStrength] = useState([])
+  // const [strength, setStrength] = useState([])
+  const strength = []
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    if (activeUpper) {
-      setStrength(+2)
-    } else {
-      setStrength(+0)
-    }
-    if (activeLower) {
-      setStrength(+2)
-    } else {
-      setStrength(+0)
-    }
-    if (activeNumeric) {
-      setStrength(+2)
-    } else {
-      setStrength(+0)
-    }
-    if (activeSymbols) {
-      setStrength(+2)
-    } else {
-      setStrength(+0)
-    }
-    if (characterLength > 2) {
-      setStrength(+1)
-    } if (characterLength > 4) {
-      setStrength(+2)
-    } if (characterLength > 6) {
-      setStrength(+3)
-    } if (characterLength > 8) {
-      setStrength(+4)
-    } if (characterLength === 10) {
-      setStrength(+5)
-    }
-    console.log("içeride " + strength);
+  //   console.log("içeride " + strength);
 
-  }, [strength, characterLength, activeSymbols, activeNumeric, activeLower, activeUpper])
+  // }, [strength, characterLength, activeSymbols, activeNumeric, activeLower, activeUpper])
 
-  console.log("dışarıda " + strength);
+  if (activeUpper) {
+    strength.push(2)
+  } else {
+    strength.push(0)
+  }
+  if (activeLower) {
+    strength.push(2)
+  } else {
+    strength.push(0)
+  }
+  if (activeNumeric) {
+    strength.push(2)
+  } else {
+    strength.push(0)
+  }
+  if (activeSymbols) {
+    strength.push(4)
+  } else {
+    strength.push(0)
+  }
 
 
+
+  // if (characterLength > 0 && characterLength <= 2) {
+  //   strength.push(2)
+  // } else {
+  //   strength.push(0)
+  // }
+  // if (characterLength > 2 && characterLength <= 4) {
+  //   strength.push(4)
+  // } else {
+  //   strength.push(0)
+  // }
+  // if (characterLength > 4 && characterLength <= 6) {
+  //   strength.push(6)
+  // } else {
+  //   strength.push(0)
+  // }
+  // if (characterLength > 6 && characterLength <= 8) {
+  //   strength.push(8)
+  // } else {
+  //   strength.push(0)
+  // }
+  // if (characterLength > 8) {
+  //   strength.push(10)
+  // } else {
+  //   strength.push(0)
+  // }
+
+  let sum = strength.reduce((total, currentValue) => total + currentValue)
+  let sumCalculate = sum * characterLength
+
+  // console.log("sum 1 " + sum);
+
+
+
+
+  if (sumCalculate > 0 && sumCalculate <= 20) {
+    console.log("sumCalculate EASY " + sumCalculate);
+  }
+  if (sumCalculate > 21 && sumCalculate <= 40) {
+    console.log("sumCalculate MEDİUM " + sumCalculate);
+  }
+  if (sumCalculate > 41 && sumCalculate <= 60) {
+    console.log("sumCalculate HARD " + sumCalculate);
+  }
+  if (sumCalculate > 61 && sumCalculate <= 100) {
+    console.log("sumCalculate EXPERT " + sumCalculate);
+  }
+
+  // console.log("dışarıda " + strength);
+
+  // let arrmap = strength.map(item => item)
+  // console.log(arrmap);
 
   // UPPER +
   const UpperClick = () => {
