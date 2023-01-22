@@ -102,7 +102,7 @@ export const PasswordContextprovider = ({ children }) => {
         backgroundColor: easyActive ? "yellow" : ""
     }
     useEffect(() => {
-        if (sumCalculate > 0 && sumCalculate <= 20) {
+        if (sumCalculate > 0 && sumCalculate <= 25) {
             console.log("sumCalculate EASY " + sumCalculate);
             setEasyActive(true)
             setDifficulty("Easy")
@@ -121,7 +121,7 @@ export const PasswordContextprovider = ({ children }) => {
         backgroundColor: mediumActive ? "yellow" : ""
     }
     useEffect(() => {
-        if (sumCalculate > 21 && sumCalculate <= 40) {
+        if (sumCalculate > 26 && sumCalculate <= 50) {
             console.log("sumCalculate medium " + sumCalculate);
             setEasyActive(true)
             setMediumActive(true)
@@ -142,7 +142,7 @@ export const PasswordContextprovider = ({ children }) => {
         backgroundColor: hardActive ? "yellow" : ""
     }
     useEffect(() => {
-        if (sumCalculate > 41 && sumCalculate <= 60) {
+        if (sumCalculate > 51 && sumCalculate <= 75) {
             console.log("sumCalculate hard " + sumCalculate);
             setEasyActive(true)
             setMediumActive(true)
@@ -165,7 +165,7 @@ export const PasswordContextprovider = ({ children }) => {
         backgroundColor: expertActive ? "yellow" : ""
     }
     useEffect(() => {
-        if (sumCalculate > 61 && sumCalculate <= 100) {
+        if (sumCalculate > 76 && sumCalculate <= 100) {
             console.log("sumCalculate expert " + sumCalculate);
             setEasyActive(true)
             setMediumActive(true)
