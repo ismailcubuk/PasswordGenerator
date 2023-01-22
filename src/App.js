@@ -229,31 +229,56 @@ function App() {
       const randomIndex = Math.floor(Math.random() * sifre.length);
       letters.push(sifre[randomIndex])
     }
+
     setPassword(letters);
 
-  }
 
+    // console.log("trim" + letters.reduce((a, b) => a + b + '').trim());
+  }
   const handleChange = (e) => {
     setCharacterLength(e.target.value)
   }
 
   // DÜZELT BURAYI
-  let newPass = []
-  newPass.push(password.reduce((a, b) => a + b + '').trim())
+
+
+  // newPass.push(password.reduce((a, b) => a + b + '').trim())
   const copyClick = () => {
-    navigator.clipboard.writeText(newPass).then(() => {
+    let trimPassword = []
+    trimPassword.push(password.reduce((a, b) => a + b + '').trim())
+    navigator.clipboard.writeText(trimPassword).then(() => {
     });
-    console.log("text copied");
+    alert("text copied" + trimPassword);
   };
+
+  const enabledCopy = {
+    color: "white",
+    height: "24px",
+    cursor: "pointer"
+  }
+  const disabledCopy = {
+    color: "white",
+    opacity: "0.4",
+    height: "24px",
+    cursor: "pointer"
+  }
+
   // DÜZELT BURAYI
+
+  // TOASTS
+
+
+
   return (
     <div className="background">
       <div className="border">
         <h3 className="header">Password Generator</h3>
         <div className="generate-password">
           <h2>{password}</h2>
-          <FontAwesomeIcon icon={faCopy}
+          <FontAwesomeIcon
+            icon={faCopy}
             className='copy-icon'
+            style={password === "" ? disabledCopy : enabledCopy}
             onClick={copyClick}
           />
         </div>
@@ -323,7 +348,6 @@ function App() {
               </div>
             </div>
           </div>
-          {/* DİSABLED EKLE */}
           <button className="generate" disabled={!activeUpper && !activeLower && !activeNumeric && !activeSymbols} onClick={handleClick}>
             GENERATE
             <FontAwesomeIcon icon={faArrowRight} className='icon' />

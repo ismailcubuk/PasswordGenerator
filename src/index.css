@@ -22,12 +22,10 @@ h1 {
 
 /* WİTH EKLENDİ */
 .border {
-    border: 2px solid white;
     width: 550px;
 }
 
 .header {
-    border: 2px solid red;
     opacity: 0.6;
     display: flex;
     flex-direction: column;
@@ -36,7 +34,6 @@ h1 {
 }
 
 .generate-password {
-    border: 2px solid blue;
     display: flex;
     justify-content: space-between;
     background-color: #24232C;
@@ -45,22 +42,14 @@ h1 {
     height: 71px;
 }
 
-.copy-icon {
-    height: 24px;
-    color: white;
-    cursor: pointer;
-}
-
 /* GENERATE */
 .generate-area {
-    border: 2px solid green;
     background-color: #24232C;
     padding: 30px 20px;
 }
 
 /* CHARACTER LENGTH */
 .character-length {
-    border: 2px solid red;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -102,7 +91,6 @@ h1 {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
-    border: 2px solid red;
 }
 
 .options>div {
@@ -154,8 +142,6 @@ h1 {
 
 /* GENERATE */
 .generate {
-    /* background-color: #A9FDB2; */
-    /* background-color: greenyellow; */
     background-color: #36A474;
     display: flex;
     justify-content: center;
@@ -172,11 +158,11 @@ h1 {
 }
 
 .generate:hover .icon {
-    color: #A9FDB2;
+    color: #36A474;
 }
 
 .generate:hover {
-    color: #BBF7C1;
+    color: #36A474;
     background-color: #24232C;
 }
 
