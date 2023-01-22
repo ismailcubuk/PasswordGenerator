@@ -21,7 +21,8 @@ h1 {
 }
 
 /* WİTH EKLENDİ */
-.border {
+.borderPage {
+    min-width: 375px;
     width: 550px;
 }
 
@@ -36,10 +37,16 @@ h1 {
 .generate-password {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: #24232C;
     padding: 20px;
     margin-bottom: 20px;
     height: 71px;
+}
+
+.generate-password>h2 {
+    margin: 0px;
+
 }
 
 /* GENERATE */
@@ -111,27 +118,35 @@ h1 {
 .strength {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
     background-color: #181720;
     margin-bottom: 30px;
+    align-items: center;
+    padding: 4px 20px 4px 20px;
 }
 
 .strength>div {
     display: flex;
+    height: 49.6px;
 }
 
 .strength>h3 {
     opacity: 0.6;
+    display: flex;
+    height: 49.6px;
+    align-items: center;
 }
 
-.strength>div>h2 {
+.difficulty {
     margin-right: 20px;
+    display: flex;
+    align-items: center;
 }
 
 .levels {
     display: flex;
     width: 70px;
     justify-content: space-between;
+    align-items: center;
 }
 
 .level {
@@ -150,6 +165,7 @@ h1 {
     padding: 16px;
     width: 100%;
     font-size: 20px;
+    align-items: center;
 }
 
 .icon {
@@ -174,4 +190,27 @@ h1 {
 
 .generate:disabled .icon {
     color: #24232C;
+}
+
+/* TOAST */
+.toast-div {
+    display: flex;
+    max-width: 140px;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}
+
+.toast-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+}
+
+.toast-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

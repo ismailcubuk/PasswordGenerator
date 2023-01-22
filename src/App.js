@@ -1,7 +1,9 @@
+import Toast from 'react-bootstrap/Toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faCopy } from '@fortawesome/free-regular-svg-icons'
 import { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [password, setPassword] = useState("")
@@ -83,7 +85,6 @@ function App() {
   let sum = strength.reduce((total, currentValue) => total + currentValue)
   let sumCalculate = sum * characterLength
 
-  // console.log("sum 1 " + sum);
   const [difficulty, setDifficulty] = useState("")
   // EASY
   const [easyActive, setEasyActive] = useState(false)
@@ -171,21 +172,6 @@ function App() {
     }
   }, [sumCalculate])
 
-  // if (sumCalculate > 21 && sumCalculate <= 40) {
-  //   console.log("sumCalculate MEDİUM " + sumCalculate);
-  // }
-  // if (sumCalculate > 41 && sumCalculate <= 60) {
-  //   console.log("sumCalculate HARD " + sumCalculate);
-  // }
-  // if (sumCalculate > 61 && sumCalculate <= 100) {
-  //   console.log("sumCalculate EXPERT " + sumCalculate);
-  // }
-
-  // console.log("dışarıda " + strength);
-
-  // let arrmap = strength.map(item => item)
-  // console.log(arrmap);
-
   // UPPER +
   const UpperClick = () => {
     setActiveUpper(!activeUpper)
@@ -229,26 +215,18 @@ function App() {
       const randomIndex = Math.floor(Math.random() * sifre.length);
       letters.push(sifre[randomIndex])
     }
-
     setPassword(letters);
-
-
-    // console.log("trim" + letters.reduce((a, b) => a + b + '').trim());
   }
   const handleChange = (e) => {
     setCharacterLength(e.target.value)
   }
 
-  // DÜZELT BURAYI
-
-
-  // newPass.push(password.reduce((a, b) => a + b + '').trim())
   const copyClick = () => {
     let trimPassword = []
     trimPassword.push(password.reduce((a, b) => a + b + '').trim())
     navigator.clipboard.writeText(trimPassword).then(() => {
     });
-    alert("text copied" + trimPassword);
+    setShowToast(!showToast)
   };
 
   const enabledCopy = {
@@ -263,15 +241,14 @@ function App() {
     cursor: "pointer"
   }
 
-  // DÜZELT BURAYI
-
   // TOASTS
 
+  const [showToast, setShowToast] = useState(false);
 
 
   return (
     <div className="background">
-      <div className="border">
+      <div className="borderPage">
         <h3 className="header">Password Generator</h3>
         <div className="generate-password">
           <h2>{password}</h2>
@@ -339,7 +316,9 @@ function App() {
           <div className="strength">
             <h3>STRENGTH</h3>
             <div>
-              <h2> {difficulty} </h2>
+              <div className='difficulty'>
+                <h3> {difficulty} </h3>
+              </div>
               <div className="levels">
                 <div className="level" style={easy}></div>
                 <div className="level" style={medium}></div>
@@ -354,7 +333,17 @@ function App() {
           </button>
         </div>
       </div>
-    </div>
+      {/* autohide delay={2000} */}
+
+      <div className='toast-div'>
+        <Toast show={showToast} onClose={() => setShowToast(false)} autohide delay={1000} position={'bottom-end'} className="toast" bg={"success"}>
+          <Toast.Header className='toast-header' closeButton={false}>
+            <strong className="me-auto">Copy Password</strong>
+          </Toast.Header>
+          <Toast.Body className='toast-body'> {password} </Toast.Body>
+        </Toast>
+      </div>
+    </div >
   );
 }
 
