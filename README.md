@@ -1,6 +1,6 @@
 <h1><strong>React App</strong></h1>
 
-<h1><a href="https://ismailcubuk.github.io/PasswordGenerator/">Password Generator</a></h1>
+<h1> Click go to website => <a href="https://ismailcubuk.github.io/PasswordGenerator/">Password Generator</a></h1>
 <p>You can create random password</p>
 <p>You can change your password length</p>
 <p>You can add uppercase letters </p>
