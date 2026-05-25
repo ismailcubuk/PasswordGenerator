@@ -8,6 +8,7 @@ function CharacterLength() {
             type="range"
             id="range"
             name="range"
+            aria-label="Character length"
             min={4} max={10} step={1}
             value={characterLength}
             onChange={handleChange}
