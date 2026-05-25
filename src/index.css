@@ -180,6 +180,15 @@ h3 {
     border-radius: 8px;
 }
 
+.privacy-note {
+    margin: 14px 2px 0;
+    color: var(--muted);
+    font-size: 0.86rem;
+    font-weight: 700;
+    line-height: 1.45;
+    text-align: center;
+}
+
 .character-length {
     display: flex;
     align-items: center;
