@@ -32,5 +32,3 @@ http://localhost:3000/PasswordGenerator
 npm run build
 npm run deploy
 ```
-
-Not: `.dev-server.out.log` ve `.dev-server.err.log` dosyaları local log dosyalarıdır, deploy edilmez.
