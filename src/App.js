@@ -30,9 +30,6 @@ function App() {
           <Strength />
           <ButtonGenerate />
         </div>
-        <p className="privacy-note">
-          Generated locally in your browser. No sign-in, no downloads, no data collection.
-        </p>
         <RecentPasswords />
       </div>
       <Alert />
