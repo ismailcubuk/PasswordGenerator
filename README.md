@@ -4,6 +4,8 @@ Responsive password generator built with React. It lets users create random pass
 
 Live demo: [Password Generator](https://ismailcubuk.github.io/PasswordGenerator/)
 
+![Preview](./public/images/screenshots/preview.png)
+
 ## Features
 
 - Generate random passwords
@@ -24,20 +26,6 @@ Live demo: [Password Generator](https://ismailcubuk.github.io/PasswordGenerator/
 - Bootstrap
 - Font Awesome
 - CSS
-
-## Getting Started
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Start the development server:
-
-```bash
-npm start
-```
 
 ## Project Structure
 
