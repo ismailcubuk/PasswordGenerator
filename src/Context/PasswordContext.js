@@ -4,16 +4,28 @@ const PasswordContext = createContext();
 
 export const PasswordContextprovider = ({ children }) => {
     const [password, setPassword] = useState("")
+    const [copiedPassword, setCopiedPassword] = useState("")
+    const [recentPasswords, setRecentPasswords] = useState([])
+    const [showRecentModal, setShowRecentModal] = useState(false)
     const [showToast, setShowToast] = useState(false);
-    const [characterLength, setCharacterLength] = useState("5")
+    const [characterLength, setCharacterLength] = useState("4")
     // COPY +
     const copyClick = () => {
-        let trimPassword = []
-        trimPassword.push(password.reduce((a, b) => a + b + '').trim())
-        navigator.clipboard.writeText(trimPassword).then(() => {
+        if (!password) {
+            return
+        }
+        navigator.clipboard.writeText(password).then(() => {
         });
-        setShowToast(!showToast)
+        setCopiedPassword(password)
+        setShowToast(true)
     };
+    const copyRecentPassword = (recentPassword) => {
+        navigator.clipboard.writeText(recentPassword).then(() => {
+        });
+        setCopiedPassword(recentPassword)
+        setShowToast(true)
+        setShowRecentModal(false)
+    }
     const handleChange = (e) => {
         setCharacterLength(e.target.value)
     }
@@ -98,12 +110,11 @@ export const PasswordContextprovider = ({ children }) => {
     // EASY +
     const [easyActive, setEasyActive] = useState(false)
     const easy = {
-        border: easyActive ? "2px solid yellow" : "",
-        backgroundColor: easyActive ? "yellow" : ""
+        border: easyActive ? "2px solid #ffd166" : "",
+        backgroundColor: easyActive ? "#ffd166" : ""
     }
     useEffect(() => {
         if (sumCalculate > 0 && sumCalculate <= 25) {
-            console.log("sumCalculate EASY " + sumCalculate);
             setEasyActive(true)
             setDifficulty("Easy")
         }
@@ -117,12 +128,11 @@ export const PasswordContextprovider = ({ children }) => {
     // MEDİUM +
     const [mediumActive, setMediumActive] = useState(false)
     const medium = {
-        border: mediumActive ? "2px solid yellow" : "",
-        backgroundColor: mediumActive ? "yellow" : ""
+        border: mediumActive ? "2px solid #ffd166" : "",
+        backgroundColor: mediumActive ? "#ffd166" : ""
     }
     useEffect(() => {
-        if (sumCalculate > 26 && sumCalculate <= 50) {
-            console.log("sumCalculate medium " + sumCalculate);
+        if (sumCalculate > 25 && sumCalculate <= 50) {
             setEasyActive(true)
             setMediumActive(true)
             setDifficulty("Medium")
@@ -138,12 +148,11 @@ export const PasswordContextprovider = ({ children }) => {
     // HARD +
     const [hardActive, setHardActive] = useState(false)
     const hard = {
-        border: hardActive ? "2px solid yellow" : "",
-        backgroundColor: hardActive ? "yellow" : ""
+        border: hardActive ? "2px solid #ffd166" : "",
+        backgroundColor: hardActive ? "#ffd166" : ""
     }
     useEffect(() => {
-        if (sumCalculate > 51 && sumCalculate <= 75) {
-            console.log("sumCalculate hard " + sumCalculate);
+        if (sumCalculate > 50 && sumCalculate <= 75) {
             setEasyActive(true)
             setMediumActive(true)
             setHardActive(true)
@@ -161,12 +170,11 @@ export const PasswordContextprovider = ({ children }) => {
     // EXPERT +
     const [expertActive, setExpertActive] = useState(false)
     const expert = {
-        border: expertActive ? "2px solid yellow" : "",
-        backgroundColor: expertActive ? "yellow" : ""
+        border: expertActive ? "2px solid #ffd166" : "",
+        backgroundColor: expertActive ? "#ffd166" : ""
     }
     useEffect(() => {
-        if (sumCalculate > 76 && sumCalculate <= 100) {
-            console.log("sumCalculate expert " + sumCalculate);
+        if (sumCalculate > 75) {
             setEasyActive(true)
             setMediumActive(true)
             setHardActive(true)
@@ -186,19 +194,33 @@ export const PasswordContextprovider = ({ children }) => {
 
     // GENERATE +
     const handleClick = () => {
-        const sifre = pwUpper + pwLower + pwNumeric + pwSymbols
-        let letters = []
-        for (let i = 0; i < characterLength; i++) {
-            const randomIndex = Math.floor(Math.random() * sifre.length);
+        const selectedGroups = [pwUpper, pwLower, pwNumeric, pwSymbols].filter(Boolean)
+        const sifre = selectedGroups.join("")
+        const passwordLength = Math.max(Number(characterLength), selectedGroups.length)
+        const letters = selectedGroups.map((group) => group[Math.floor(Math.random() * group.length)])
+
+        for (let i = letters.length; i < passwordLength; i++) {
+            const randomIndex = Math.floor(Math.random() * sifre.length)
             letters.push(sifre[randomIndex])
         }
-        setPassword(letters);
+
+        const shuffledLetters = letters.sort(() => Math.random() - 0.5).join("")
+        setPassword(shuffledLetters);
+        setRecentPasswords((prevPasswords) => [
+            shuffledLetters,
+            ...prevPasswords.filter((prevPassword) => prevPassword !== shuffledLetters)
+        ].slice(0, 5))
     }
     // GENERATE -
     const data = {
         password,
         setPassword,
         copyClick,
+        copyRecentPassword,
+        copiedPassword,
+        recentPasswords,
+        showRecentModal,
+        setShowRecentModal,
         showToast,
         setShowToast,
         handleChange,

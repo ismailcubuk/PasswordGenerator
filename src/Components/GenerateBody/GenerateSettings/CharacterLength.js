@@ -8,7 +8,7 @@ function CharacterLength() {
             type="range"
             id="range"
             name="range"
-            min={1} max={10} step={1}
+            min={4} max={10} step={1}
             value={characterLength}
             onChange={handleChange}
         />

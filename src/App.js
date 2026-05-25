@@ -9,6 +9,7 @@ import Numbers from './Components/GenerateBody/GenerateSettings/Numbers';
 import Symbols from './Components/GenerateBody/GenerateSettings/Symbols';
 import Strength from './Components/GenerateBody/GenerateStrength/Strength';
 import ButtonGenerate from './Components/GenerateBody/GenerateButton/ButtonGenerate';
+import RecentPasswords from './Components/RecentPasswords/RecentPasswords';
 import Alert from './Components/Alert/Alert';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Strength />
           <ButtonGenerate />
         </div>
+        <RecentPasswords />
       </div>
       <Alert />
     </div >
